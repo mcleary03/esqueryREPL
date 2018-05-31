@@ -20,7 +20,7 @@
 
     <div id="sourceDisplay">
       <div class='label'>Source</div>
-      <textarea id="source" wrap="off">
+      <textarea id="source" wrap="off" cols="40" rows="15">
 var x = 1;
 var y = 2;
 function bar() {
@@ -61,20 +61,24 @@ function bar() {
 
     const highlightSelector = e => {
       selectorLabel.classList.add('highlight')
+      selectorNode.classList.add('highlight')
     }
 
     const unHighlightSelector = e => {
       selectorLabel.classList.remove('highlight')
+      selectorNode.classList.remove('highlight')
     }
 
     const highlightSource = e => {
       sourceLabel.classList.add('highlight')
       sourceDisplay.classList.add('highlight')
+      sourceNode.classList.add('highlight')
     }
 
     const unHighlightSource = e => {
       sourceLabel.classList.remove('highlight')
       sourceDisplay.classList.remove('highlight')
+      sourceNode.classList.remove('highlight')
     }
 
     function update() {
