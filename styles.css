@@ -26,30 +26,10 @@ body, textarea, input {
   display: grid;
   grid-gap: 0;
   grid-template-rows: 0fr 0fr 1fr;
+  grid-template-columns: min-content;
   grid-template-areas: 'selector selector selector selector'
                        'source   output   output   output'
                        'ast      output   output   output';
-}
-
-@media screen and (max-width: 750px) {
-  #display {
-    margin: 10px;
-    margin-top: 5em;
-    grid-template-rows: auto;
-    grid-template-areas: 'selector'
-                         'source'
-                         'ast'
-                         'output';
-  }
-  #astDisplay, #outputDisplay {
-    overflow-y: auto;
-    overflow-x: scroll;
-  }
-  #selectorDisplay {
-    position: fixed;
-    top: 0;
-    left: 0;
-  }
 }
 
 #selectorDisplay {
@@ -80,7 +60,7 @@ body, textarea, input {
 
 #selector.highlight {
   color: rgb(105, 249, 198);
-  border: 2px solid rgb(15, 220, 148);
+  border-color: rgb(15, 220, 148);
   outline: none;
 }
 
@@ -93,6 +73,10 @@ body, textarea, input {
   box-shadow: 0 2px 4px rgb(0, 0, 0) inset;
 }
 
+#sourceDisplay.highlight {
+  border-color: rgb(252, 154, 154);
+}
+
 #sourceDisplay .label {
   color: rgb(131, 70, 70);
   margin-bottom: 5px;
@@ -102,20 +86,10 @@ body, textarea, input {
   color: rgb(252, 154, 154);
 }
 
-#sourceDisplay.highlight {
-  border: 4px solid rgb(252, 154, 154);
-  border-right: 2px solid rgb(252, 154, 154);
-  border-bottom: 2px solid rgb(252, 154, 154);
-}
-
 #source {
-  height: 300px;
-  width: calc(100% - 6px);
-  position: relative;
-  bottom: 3px;
-  left: 3px;
-  padding-left: 2px;
+  margin: 0 2px 2px 6px;
   border: none;
+  border-left: 1px dotted rgba(46, 46, 46, 0.4);
   color: rgb(131, 70, 70);
 }
 
@@ -127,7 +101,6 @@ body, textarea, input {
 
 #astDisplay {
   grid-area: ast;
-  padding-left: 2px;
   overflow: scroll;
   border: 2px solid rgb(34, 41, 45);
   border-bottom: 4px solid rgb(34, 41, 45);
@@ -135,6 +108,12 @@ body, textarea, input {
   box-shadow: 0 2px 4px rgb(0, 0, 0) inset;
   border-radius: 0 0 0 5px;
   color: rgb(155, 150, 15);
+}
+
+#selectorAst {
+  height: 100%;
+  margin: 0 2px 2px 6px;
+  border-left: 1px dotted rgba(46, 46, 46, 0.4);
 }
 
 #astDisplay .label {
@@ -153,12 +132,15 @@ body, textarea, input {
   color: rgb(45, 191, 5);
 }
 
+#output {
+  margin: 0 2px 2px 6px;
+  border-left: 1px dotted rgba(46, 46, 46, 0.4);
+}
+
 #results {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   margin-left: 20vw;
   padding: 2px 4px 0 4px;
-  color: rgb(175, 238, 163);
-  background-color: rgb(30, 3, 33);
-  border: 1px solid rgb(34, 41, 45);
   margin-bottom: 10px;
 }
 
@@ -171,7 +153,7 @@ body, textarea, input {
 }
 
 #numMatches {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-size: 2em;
   text-shadow: 0 1px 3px rgb(0, 0, 0);
   font-weight: bold;
@@ -185,4 +167,53 @@ body, textarea, input {
 
 *.highlight {
   transition: 0.3s cubic-bezier(.2,1.89,.41,1.88);
+}
+
+.spread {
+  background-color: rgb(16, 19, 24);
+  display: flex;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 750px) {
+  #display {
+    margin: 10px;
+    margin-top: 6em;
+    grid-template-rows: auto;
+    grid-template-columns: auto;
+    grid-template-areas: 'selector'
+                         'source'
+                         'ast'
+                         'output';
+  }
+  #astDisplay, #outputDisplay {
+    overflow-y: auto;
+    overflow-x: scroll;
+  }
+  #selectorDisplay {
+    position: fixed;
+    width: 100%;
+    padding: 0 calc(2vw + 4px) 0 calc(2vw - 4px);
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+  #sourceDisplay {
+    border-right: 4px solid rgb(34, 41, 45);
+    border-top-right-radius: 5px;
+  }
+  #source {
+    min-width: 98%;
+    max-width: 98%;
+  }
+  #astDisplay {
+    border-right: 4px solid rgb(34, 41, 45);
+    border-bottom: 2px solid rgb(34, 41, 45);
+    border-radius: 0;
+  }
+  #outputDisplay {
+    border-top: 2px solid rgb(34, 41, 45);
+    border-left: 4px solid rgb(34, 41, 45);
+    border-radius: 0 0 5px 5px;
+  }
 }
