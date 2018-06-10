@@ -6,8 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>esqueryREPL</title>
   <link rel="stylesheet" href="styles.css">
-  <script src="esquery.min.js"></script>
   <script src="esprima.js"></script>
+  <script type="text/javascript" src="esquery.js"></script>
 </head>
 <body>
   <div id="display">
@@ -17,7 +17,7 @@
         <span class='label'>Selector</span>
         <span id="results"></span>
       </div>
-      <input id="selector" type="text" value='[id.name="bar"]'/>
+      <textarea id="selector">[id.name="bar"]</textarea>
     </div>
 
     <div id="sourceDisplay">
@@ -57,9 +57,12 @@ function bar() {
     var selectorAstNode = document.getElementById("selectorAst");
     var outputNode = document.getElementById("output");
     const resultsNode = document.getElementById("results");
+
+    const display = document.getElementById('display')
     const selectorLabel = document.querySelector('#selectorDisplay .label')
     const sourceLabel = document.querySelector('#sourceDisplay .label')
     const sourceDisplay = document.querySelector('#sourceDisplay')
+    const outputDisplay = document.getElementById('outputDisplay')
 
     const highlightSelector = e => {
       selectorLabel.classList.add('highlight')
@@ -124,14 +127,20 @@ function bar() {
       const numMatches = matches ? matches.length : 0
       const duration = Math.round((end-start) * Math.pow(10, 2)) / Math.pow(10, 2)
 
-      resultsNode.innerHTML = `<span id='numMatches'>${numMatches}</span> node${numMatches>1||numMatches==0?'s':''} found in ${duration} ms\n`
-      resultsNode.classList.add(matches!=0 ? 'good' : 'bad')
-      resultsNode.classList.remove(matches==0 ? 'good' : 'bad')
+      resultsNode.innerHTML = `<span id='numMatches'>${numMatches}</span> node${numMatches>1||numMatches===0?'s':''} found in ${duration} ms\n`
+
+      if (numMatches) {
+        display.classList.remove('bad')
+        resultsNode.classList.remove('bad')
+        resultsNode.classList.add('good')
+      } else {
+        display.classList.add('bad')
+        resultsNode.classList.remove('good')
+        resultsNode.classList.add('bad')
+      }
 
       outputNode.innerHTML = matchesOutput
     }
-
-    //Math.round((end-start) * Math.pow(10, 5)) / Math.pow(10, 5)
 
     update();
 
@@ -148,3 +157,10 @@ function bar() {
 </body>
 </html>
 
+
+
+
+<!-- resultsNode.classList.add(matches!==0 ? 'good' : 'bad')
+resultsNode.classList.remove(matches===0 ? 'good' : 'bad')
+
+matches===0 ? outputNode.classList.add('hidden') : outputNode.classList.remove('hidden') -->
