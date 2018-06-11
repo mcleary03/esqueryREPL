@@ -20,7 +20,6 @@ body, textarea, input {
 }
 
 #display {
-  /* min-height: 96vh; */
   margin: 1vh 2vw;
   display: grid;
   grid-gap: 0;
@@ -43,8 +42,6 @@ body, textarea, input {
 
 #selectorDisplay .label {
   color: rgb(5, 116, 118);
-  text-align: left;
-  margin-left: 20px;
 }
 
 #selector {
@@ -167,7 +164,6 @@ body, textarea, input {
 
 #results {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  margin-left: 20vw;
   padding: 2px 4px 0 4px;
   margin-bottom: 10px;
 }
@@ -194,13 +190,17 @@ body, textarea, input {
 }
 
 *.highlight {
-  transition: 0.3s cubic-bezier(.2,1.89,.41,1.88);
+  transition: 0.3s cubic-bezier(1,0.66,.79,1.88);
 }
 
 .spread {
   background-color: rgb(16, 19, 24);
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+}
+
+.spread .label {
+  align-self: center;
 }
 
 @media screen and (min-width: 750px) {
@@ -243,3 +243,7 @@ body, textarea, input {
     border-radius: 0 0 5px 5px;
   }
 }
+
+/* .space {
+  color: #1b1b1c;
+} */

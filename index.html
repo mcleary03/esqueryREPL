@@ -89,7 +89,8 @@ function bar() {
     function update() {
       var ast = esprima.parse(sourceNode.value);
 
-      var selector = selectorNode.value;
+      // var selector = selectorNode.value
+      var selector = selectorNode.value.replace(/\n/g, '');
       selectorAstNode.innerHTML = "";
       outputNode.innerHTML = "";
 
@@ -140,6 +141,7 @@ function bar() {
       }
 
       outputNode.innerHTML = matchesOutput
+      //outputNode.innerHTML = matchesOutput.value.replace(' ', document.createElement('span').innerHTML='•').style = 'color: #1b1b1c';
     }
 
     update();
