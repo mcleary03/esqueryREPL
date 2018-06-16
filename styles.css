@@ -24,6 +24,7 @@ body, textarea, input {
   display: grid;
   grid-gap: 0;
   grid-template-rows: 0fr 0fr 1fr;
+  grid-template-columns: 3fr 2fr 2fr 2fr;
   grid-template-areas: 'selector selector selector selector'
                        'source   output   output   output'
                        'ast      output   output   output';
@@ -56,6 +57,7 @@ body, textarea, input {
   white-space: pre-wrap;
   word-wrap: break-word;
   word-break: break-all;
+  resize: vertical;
 }
 
 #selectorDisplay .highlight {
@@ -211,6 +213,7 @@ body, textarea, input {
 
 @media screen and (max-width: 750px) {
   #display {
+    grid-template-columns: auto;
     grid-template-rows: repeat(4, min-content);
     grid-template-areas: 'selector'
                          'source'
@@ -244,6 +247,6 @@ body, textarea, input {
   }
 }
 
-/* .space {
+.tab {
   color: #1b1b1c;
-} */
+}

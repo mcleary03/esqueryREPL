@@ -22,7 +22,7 @@
 
     <div id="sourceDisplay">
       <div class='label'>Source</div>
-      <textarea id="source" wrap="off" cols="40" rows="15">
+      <textarea id="source" wrap="off" rows="15">
 var x = 1;
 var y = 2;
 function bar() {
@@ -89,8 +89,7 @@ function bar() {
     function update() {
       var ast = esprima.parse(sourceNode.value);
 
-      // var selector = selectorNode.value
-      var selector = selectorNode.value.replace(/\n/g, '');
+      var selector = selectorNode.value;
       selectorAstNode.innerHTML = "";
       outputNode.innerHTML = "";
 
@@ -141,7 +140,6 @@ function bar() {
       }
 
       outputNode.innerHTML = matchesOutput
-      //outputNode.innerHTML = matchesOutput.value.replace(' ', document.createElement('span').innerHTML='•').style = 'color: #1b1b1c';
     }
 
     update();
