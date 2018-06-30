@@ -56,7 +56,7 @@ function bar() {
     var selectorNode = document.getElementById("selector");
     var selectorAstNode = document.getElementById("selectorAst");
     var outputNode = document.getElementById("output");
-    const resultsNode = document.getElementById("results");
+    const resultsNode = document.getElementById("results")
 
     const display = document.getElementById('display')
     const selectorLabel = document.querySelector('#selectorDisplay .label')
@@ -88,8 +88,9 @@ function bar() {
 
     function update() {
       var ast = esprima.parse(sourceNode.value);
-
-      var selector = selectorNode.value;
+      //var selector = selectorNode.value;
+      // Removes line breaks from query string
+      var selector = selectorNode.value.replace(/\n/g, '');
       selectorAstNode.innerHTML = "";
       outputNode.innerHTML = "";
 
@@ -129,16 +130,19 @@ function bar() {
 
       resultsNode.innerHTML = `<span id='numMatches'>${numMatches}</span> node${numMatches>1||numMatches===0?'s':''} found in ${duration} ms\n`
 
-      if (numMatches) {
+      const positiveStyle = () => {
         display.classList.remove('bad')
         resultsNode.classList.remove('bad')
         resultsNode.classList.add('good')
-      } else {
+      }
+
+      const negativeStyle = () => {
         display.classList.add('bad')
         resultsNode.classList.remove('good')
         resultsNode.classList.add('bad')
       }
 
+      numMatches ? positiveStyle() : negativeStyle()
       outputNode.innerHTML = matchesOutput
     }
 
