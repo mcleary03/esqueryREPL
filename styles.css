@@ -285,12 +285,14 @@ body, textarea, input {
 }
 
 #copyMessage {
+  display: none;
   position: relative;
   top: 30px;
   opacity: 0;
 }
 
 #copyMessage.show {
+  display: initial;
   width: 20%;
   font-size: 20px;
   margin-left: 25px;
