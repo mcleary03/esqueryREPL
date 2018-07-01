@@ -24,10 +24,10 @@ body, textarea, input {
   display: grid;
   grid-gap: 0;
   grid-template-rows: 0fr 0fr 1fr;
-  grid-template-columns: 3fr 2fr 2fr 2fr;
-  grid-template-areas: 'selector selector selector selector'
-                       'source   output   output   output'
-                       'ast      output   output   output';
+  grid-template-columns: 1fr 2fr;
+  grid-template-areas: 'selector selector'
+                       'source   output  '
+                       'ast      output  ';
 }
 
 #display.bad {
@@ -58,6 +58,9 @@ body, textarea, input {
   word-wrap: break-word;
   word-break: break-all;
   resize: vertical;
+  outline: none;
+  transition: border-color 0.3s cubic-bezier(1,0.66,.79,1),
+              color 0.3s cubic-bezier(1,0.66,.79,1);
 }
 
 #selectorDisplay .highlight {
@@ -67,7 +70,6 @@ body, textarea, input {
 #selector.highlight {
   color: rgb(105, 249, 198);
   border-color: rgb(15, 220, 148);
-  outline: none;
 }
 
 #sourceDisplay {
@@ -136,7 +138,6 @@ body, textarea, input {
   border-left: 1px dotted rgba(46, 46, 46, 0.4);
 }
 
-
 #astDisplay .label {
   margin-bottom: 10px;
 }
@@ -191,14 +192,11 @@ body, textarea, input {
   text-align: center;
 }
 
-*.highlight {
-  transition: 0.3s cubic-bezier(1,0.66,.79,1.88);
-}
-
 .spread {
   background-color: rgb(16, 19, 24);
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  margin: 0 2vw;
 }
 
 .spread .label {
@@ -249,4 +247,68 @@ body, textarea, input {
 
 .tab {
   color: #1b1b1c;
+}
+
+#copyBtn {
+  position: relative;
+  bottom: 3px;
+  height: 2.5em;
+  padding: 0 10px 2px;
+  margin-right: 2vw;
+  font-weight: bold;
+  font-size: 0.6em;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color: rgb(7, 136, 138);
+  border: 4px solid rgb(34, 41, 45);
+  border-top: 2px solid rgb(34, 41, 45);
+  border-bottom: 2px solid rgb(34, 41, 45);
+  border-radius: 5px;
+  background-color: rgb(16, 19, 24);
+  outline: none;
+  transition: 0.3s cubic-bezier(1,0.66,.79,1);
+  cursor: pointer;
+}
+
+#copyBtn:hover {
+  color: rgb(105, 249, 198);
+  background-color: rgb(34, 41, 45);
+}
+
+#copyBtn.highlight {
+  color: rgb(105, 249, 198);
+  border-color: rgb(15, 220, 148);
+  transform: scale(0.95);
+}
+
+*.highlight {
+  transition: 0.3s cubic-bezier(1,0.66,.79,1.88);
+}
+
+#copyMessage {
+  position: relative;
+  top: 30px;
+  opacity: 0;
+}
+
+#copyMessage.show {
+  width: 20%;
+  font-size: 20px;
+  margin-left: 25px;
+  opacity: 1;
+  color: rgb(49, 89, 122);
+  animation: 1.2s fadeUp ease-in forwards;
+}
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0.25;
+  }
+  25%, 60% {
+    top: 0;
+    opacity: 1;
+  }
+  100% {
+    top: -100px;
+    opacity: 0;
+  }
 }

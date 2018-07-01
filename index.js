@@ -1,0 +1,131 @@
+var sourceNode = document.getElementById("source");
+var selectorNode = document.getElementById("selector");
+var selectorAstNode = document.getElementById("selectorAst");
+var outputNode = document.getElementById("output");
+const resultsNode = document.getElementById("results")
+
+const display = document.getElementById('display')
+const selectorLabel = document.querySelector('#selectorDisplay .label')
+const sourceLabel = document.querySelector('#sourceDisplay .label')
+const sourceDisplay = document.querySelector('#sourceDisplay')
+const outputDisplay = document.getElementById('outputDisplay')
+
+const highlightSelector = e => {
+  selectorLabel.classList.add('highlight')
+  selectorNode.classList.add('highlight')
+}
+
+const unHighlightSelector = e => {
+  selectorLabel.classList.remove('highlight')
+  selectorNode.classList.remove('highlight')
+}
+
+const highlightSource = e => {
+  sourceLabel.classList.add('highlight')
+  sourceDisplay.classList.add('highlight')
+  sourceNode.classList.add('highlight')
+}
+
+const unHighlightSource = e => {
+  sourceLabel.classList.remove('highlight')
+  sourceDisplay.classList.remove('highlight')
+  sourceNode.classList.remove('highlight')
+}
+
+
+const copyConfirmation = () => {
+  const copyMessage = document.getElementById('copyMessage')
+  copyMessage.classList.add('show')
+  setTimeout( e => copyMessage.classList.remove('show'), 1000 )
+}
+
+const copyQuery = e => {
+  const originalValue = selectorNode.value
+  const formattedValue = selectorNode.value.replace(/\n/g, '')
+  selectorNode.innerHTML = formattedValue
+  selectorNode.select()
+  document.execCommand('copy')
+  selectorNode.blur()
+  selectorNode.innerHTML = originalValue
+
+  e.target.classList.add('highlight')
+  setTimeout( () => {
+    e.target.classList.remove('highlight')
+  }, 300)
+
+  copyConfirmation()
+}
+
+function update() {
+  var ast = esprima.parse(sourceNode.value);
+  var selector = selectorNode.value.replace(/\n/g, '');  //remove line breaks from query string
+  selectorAstNode.innerHTML = "";
+  outputNode.innerHTML = "";
+
+  var start, end, selectorAst, selectorAstOutput, matches, matchesOutput;
+
+  try {
+    start = performance.now();
+  } catch (e) {
+    start = Date.now();
+  }
+
+  try {
+    selectorAst = esquery.parse(selector);
+  } catch (e) {
+    selectorAstOutput = e.message;
+  }
+
+  try {
+    var matches = esquery.match(ast, selectorAst);
+  } catch (e) {
+    matchesOutput = e.message;
+  }
+  
+  try {
+    end = performance.now();
+  } catch (e) {
+    end = Date.now();
+  }
+
+  selectorAstOutput = selectorAstOutput || JSON.stringify(selectorAst, null, "  ");
+  matchesOutput = matchesOutput || JSON.stringify(matches, null, "  ");
+
+  selectorAstNode.appendChild(document.createTextNode(selectorAstOutput));
+  
+  const numMatches = matches ? matches.length : 0
+  const duration = Math.round((end-start) * Math.pow(10, 2)) / Math.pow(10, 2)
+
+  resultsNode.innerHTML = `<span id='numMatches'>${numMatches}</span> node${numMatches>1||numMatches===0?'s':''} found in ${duration} ms\n`
+
+  const positiveStyle = () => {
+    display.classList.remove('bad')
+    resultsNode.classList.remove('bad')
+    resultsNode.classList.add('good')
+  }
+
+  const negativeStyle = () => {
+    display.classList.add('bad')
+    resultsNode.classList.remove('good')
+    resultsNode.classList.add('bad')
+  }
+
+  numMatches ? positiveStyle() : negativeStyle()
+  outputNode.innerHTML = matchesOutput
+}
+
+update();
+
+selectorNode.addEventListener('focus', highlightSelector)
+selectorNode.addEventListener('blur', unHighlightSelector)
+sourceNode.addEventListener('focus', highlightSource)
+sourceNode.addEventListener('blur', unHighlightSource)
+
+sourceNode.addEventListener("change", update);
+sourceNode.addEventListener("keyup", update)
+selectorNode.addEventListener("change", update);
+selectorNode.addEventListener("keyup", update);
+
+const copyBtn = document.getElementById('copyBtn')
+
+copyBtn.addEventListener('mousedown', copyQuery)
