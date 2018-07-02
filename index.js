@@ -51,7 +51,7 @@ const copyQuery = e => {
   e.target.classList.add('highlight')
   setTimeout( () => {
     e.target.classList.remove('highlight')
-  }, 300)
+  }, 300) // 300ms corresponds to the .highlight css transition timing
 
   copyConfirmation()
 }

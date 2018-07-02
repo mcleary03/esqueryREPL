@@ -31,7 +31,7 @@ body, textarea, input {
 }
 
 #display.bad {
-  height: 100vh;
+  height: 96vh;
   grid-template-columns: 1fr;
   grid-template-areas: 'selector'
                        'source  '
@@ -103,7 +103,6 @@ body, textarea, input {
   border: none;
   border-left: 1px dotted rgba(46, 46, 46, 0.4);
   color: rgb(131, 70, 70);
-  resize: vertical;
 }
 
 #source.highlight {
@@ -137,8 +136,12 @@ body, textarea, input {
   border-bottom: 4px solid rgb(34, 41, 45);
 }
 
+#display.bad #selectorAst {
+  white-space: pre-wrap;
+  word-wrap: normal;
+}
+
 #selectorAst {
-  height: 100%;
   max-width: 96vw;
   margin: 0 2px 2px 6px;
   border-left: 1px dotted rgba(46, 46, 46, 0.4);
@@ -241,6 +244,9 @@ body, textarea, input {
   #sourceDisplay {
     border-right: 4px solid rgb(34, 41, 45);
     border-top-right-radius: 5px;
+  }
+  #source {
+    resize: vertical;
   }
   #astDisplay {
     border-right: 4px solid rgb(34, 41, 45);
