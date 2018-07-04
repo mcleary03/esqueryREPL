@@ -32,7 +32,6 @@ const unHighlightSource = e => {
   sourceNode.classList.remove('highlight')
 }
 
-
 const copyConfirmation = () => {
   const copyMessage = document.getElementById('copyMessage')
   copyMessage.classList.add('show')
@@ -42,16 +41,16 @@ const copyConfirmation = () => {
 const copyQuery = e => {
   const originalValue = selectorNode.value
   const formattedValue = selectorNode.value.replace(/\n/g, '')
-  selectorNode.innerHTML = formattedValue
+  selectorNode.value = formattedValue
   selectorNode.select()
   document.execCommand('copy')
+  selectorNode.value = originalValue
   selectorNode.blur()
-  selectorNode.innerHTML = originalValue
 
   e.target.classList.add('highlight')
   setTimeout( () => {
     e.target.classList.remove('highlight')
-  }, 300) // 300ms corresponds to the .highlight css transition timing
+  }, 300) // 300ms corresponds to the *.highlight css transition timing
 
   copyConfirmation()
 }

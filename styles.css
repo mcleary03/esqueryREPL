@@ -44,6 +44,8 @@ body, textarea, input {
 
 #selectorDisplay .label {
   color: rgb(5, 116, 118);
+  transition: border 0.3s cubic-bezier(1,0.66,.79,1),
+              color 0.3s cubic-bezier(1,0.66,.79,1);
 }
 
 #selector {
@@ -81,6 +83,8 @@ body, textarea, input {
   border-left: 4px solid rgb(34, 41, 45);
   border-radius: 5px 0 0 0;
   box-shadow: 0 2px 4px rgb(0, 0, 0) inset;
+  transition: border 0.3s cubic-bezier(1,0.66,.79,1),
+              color 0.3s cubic-bezier(1,0.66,.79,1);
 }
 
 #sourceDisplay.highlight {
@@ -90,6 +94,8 @@ body, textarea, input {
 #sourceDisplay .label {
   color: rgb(131, 70, 70);
   margin-bottom: 5px;
+  transition: border 0.3s cubic-bezier(1,0.66,.79,1),
+              color 0.3s cubic-bezier(1,0.66,.79,1);
 }
 
 #sourceDisplay .label.highlight {
@@ -103,14 +109,14 @@ body, textarea, input {
   border: none;
   border-left: 1px dotted rgba(46, 46, 46, 0.4);
   color: rgb(131, 70, 70);
+  transition: border 0.3s cubic-bezier(1,0.66,.79,1),
+              color 0.3s cubic-bezier(1,0.66,.79,1);
 }
 
 #source.highlight {
   color: rgb(252, 154, 154);
   caret-color: rgb(165, 90, 250);
   outline: none;
-  transition: border 0.3s cubic-bezier(1,0.66,.79,1),
-              color 0.3s cubic-bezier(1,0.66,.79,1);
 }
 
 #display.bad #sourceDisplay {
@@ -280,8 +286,8 @@ body, textarea, input {
   border-radius: 5px;
   background-color: rgb(16, 19, 24);
   outline: none;
-  transition: 0.3s cubic-bezier(1,0.66,.79,1);
   cursor: pointer;
+  transition: 0.3s cubic-bezier(1,0.66,.79,1);
 }
 
 #copyBtn:hover {
