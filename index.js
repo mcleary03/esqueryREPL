@@ -56,7 +56,16 @@ const copyQuery = e => {
 }
 
 function update() {
-  var ast = esprima.parse(sourceNode.value);
+  let isSourceValid = true
+  let isSelectorValid = true
+  // var ast = esprima.parse(sourceNode.value);
+  var ast
+  try {
+    ast = esprima.parse(sourceNode.value)
+  } catch (e) {
+    isSourceValid = false
+    console.log(e)
+  }
   var selector = selectorNode.value.replace(/\n/g, '');  //remove line breaks from query string
   selectorAstNode.innerHTML = "";
   outputNode.innerHTML = "";
@@ -72,6 +81,7 @@ function update() {
   try {
     selectorAst = esquery.parse(selector);
   } catch (e) {
+    isSelectorValid = false
     selectorAstOutput = e.message;
   }
 
@@ -95,7 +105,11 @@ function update() {
   const numMatches = matches ? matches.length : 0
   const duration = Math.round((end-start) * Math.pow(10, 2)) / Math.pow(10, 2)
 
-  resultsNode.innerHTML = `<span id='numMatches'>${numMatches}</span> node${numMatches>1||numMatches===0?'s':''} found in ${duration} ms\n`
+  const invalidSource = `<span id='numMatches'></span>Invalid Source Code`
+  const invalidSelector = `<span id='numMatches'></span>Invalid Selector`
+  const resultsMessage = `<span id='numMatches'>${numMatches}</span> node${numMatches===1?'':'s'} found in ${duration} ms`
+
+  resultsNode.innerHTML = isSourceValid && isSelectorValid ? resultsMessage : isSourceValid ? invalidSelector : invalidSource
 
   const positiveStyle = () => {
     display.classList.remove('bad')
