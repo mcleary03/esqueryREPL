@@ -55,11 +55,11 @@ const copyQuery = e => {
   copyConfirmation()
 }
 
-function update() {
+const update = () => {
   let isSourceValid = true
   let isSelectorValid = true
-  // var ast = esprima.parse(sourceNode.value);
-  var ast
+  let ast
+
   try {
     ast = esprima.parse(sourceNode.value)
   } catch (e) {
@@ -79,10 +79,10 @@ function update() {
   }
 
   try {
-    selectorAst = esquery.parse(selector);
+    selectorAst = esquery.parse(selector)
   } catch (e) {
     isSelectorValid = false
-    selectorAstOutput = e.message;
+    selectorAstOutput = e.message
   }
 
   try {
