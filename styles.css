@@ -19,6 +19,16 @@ body, textarea, input {
   background-color: rgb(22, 25, 31);
 }
 
+#github {
+  height: 1.6em;
+  filter: opacity(0.3);
+  transition: filter 0.3s ease-in-out;
+}
+
+#github:hover {
+  filter: opacity(0.7);
+}
+
 #display {
   display: grid;
   margin: 0 calc(2vw - 6px);
@@ -93,7 +103,7 @@ body, textarea, input {
 }
 
 #sourceDisplay .label {
-  color: rgb(218, 134, 134);
+  color: rgb(206, 117, 117);
   margin-bottom: 5px;
   transition: border 0.3s cubic-bezier(1,0.66,.79,1),
               color 0.3s cubic-bezier(1,0.66,.79,1);
@@ -111,7 +121,7 @@ body, textarea, input {
   background-color: transparent;
   border: none;
   border-left: 1px dotted rgba(46, 46, 46, 0.8);
-  color: rgb(218, 134, 134);
+  color: rgb(206, 117, 117);
   transition: border 0.3s cubic-bezier(1,0.66,.79,1),
               color 0.3s cubic-bezier(1,0.66,.79,1);
 }
@@ -213,7 +223,8 @@ body, textarea, input {
 .spread {
   display: flex;
   justify-content: space-between;
-  padding: 0 2vw;
+  align-items: center;
+  padding: 0 2vw 0 2vw;
   background-color: rgb(22, 25, 31);
 }
 
