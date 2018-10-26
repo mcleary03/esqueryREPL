@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
   <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109094292-3"></script>
+  <script async src='https://www.googletagmanager.com/gtag/js?id=UA-109094292-3'></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -13,32 +13,32 @@
     gtag('config', 'UA-109094292-3');
   </script>
   <title>esqueryREPL</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="esprima.js"></script>
-  <script type="text/javascript" src="esquery.js"></script>
+  <link rel='stylesheet' href='styles.css'>
+  <script src='esprima.js'></script>
+  <script type='text/javascript' src='esquery.js'></script>
 </head>
 <body>
-  <div id="display">
+  <div id='display'>
 
-    <div id="selectorDisplay">
-      <div class="spread">
+    <div id='selectorDisplay'>
+      <div class='spread'>
         
         <span class='label'>
-          <button id="copyBtn">copy</button>
+          <button id='copyBtn'>copy</button>
           Selector
-          <span id="copyMessage">copied to clipboard</span>
+          <span id='copyMessage'>copied to clipboard</span>
         </span>
-        <span id="results"></span>
-        <a href="https://github.com/mcleary03/esqueryREPL">
-          <img  id='github'src="./GitHub-Mark-Light-64px.png" alt="GitHub logo">
+        <span id='results'></span>
+        <a href='https://github.com/mcleary03/esqueryREPL'>
+          <img  id='github'src='./GitHub-Mark-Light-64px.png' alt='GitHub logo'>
         </a>
       </div>
-      <textarea id="selector">[id.name="bar"]</textarea>
+      <textarea id='selector' spellcheck='false'>[id.name='bar']</textarea>
     </div>
 
-    <div id="sourceDisplay">
+    <div id='sourceDisplay'>
       <div class='label'>Source</div>
-      <textarea id="source" wrap="off">
+      <textarea id='source' wrap='off' spellcheck='false'>
 var x = 1;
 var y = 2;
 function bar() {
@@ -56,17 +56,17 @@ function bar() {
 </textarea><!-- this indention matters -->
     </div>
 
-    <div id="astDisplay">
+    <div id='astDisplay'>
       <div class='label'>AST</div>
-      <pre id="selectorAst"></pre>
+      <pre id='selectorAst'></pre>
     </div>
 
-    <div id="outputDisplay">
+    <div id='outputDisplay'>
       <div class='label'>Output</div>
-      <pre id="output"></pre>
+      <pre id='output'></pre>
     </div>
   </div>
 
-  <script type="text/javascript" src="index.js"></script>
+  <script type='text/javascript' src='index.js'></script>
 </body>
 </html>
